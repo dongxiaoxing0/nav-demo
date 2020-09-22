@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ch-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的导航</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <main id="main">
+        
+        </main>
+    </div>
+    <script>
+        var keys = {
+            0: ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'],
+            1: ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l'],
+            2: ['z', 'x', 'c', 'v', 'b', 'n', 'm'],
+            length: 3
+        }
+
+        var hash = {
+            q: 'qq.com',
+            w: 'weibo.com',
+            e: 'ele.me',
+            r: 'renren.com',
+            t: 'tencent.com',
+            y: 'youtube.com',
+            u: 'uc.com',
+            i: 'iqiyi.com',
+            o: 'oppo.com',
+            p: 'undifined'
+        }
+        for (var index = 0; index < keys.length; index++) {
+            console.log(index);
+            var div = document.createElement('div');
+            main.appendChild(div);
+            for (var count = 0; count < keys[index].length; count++) {
+                var kbd = document.createElement('kbd');
+                kbd.className = 'keys';
+                var span = document.createElement('span');
+                span.textContent = keys[index][count];
+                var img = document.createElement('img');
+                var hashIndex = keys[index][count];
+                var src = 'http://www.' + hash[hashIndex] + '/favicon.ico';
+                img.src = src;
+                kbd.appendChild(img);
+                kbd.appendChild(span);
+                div.appendChild(kbd);
+
+                document.onkeypress = function (event){
+                    var hashIndex = event.key;
+                    var url = 'http://www.' + hash[hashIndex];
+                    window.open(url,'_blank');
+                };
+                img.onerror = function (event) {
+                    var newImg = event.target
+                    newImg.src = '//i.loli.net/2017/11/10/5a05afbc5e183.png';
+                }
+
+            }
+        }
+    </script>
+
+</body>
+
+</html>
